@@ -1,0 +1,190 @@
+div.container-index {background:white;  border-style: SOLID ; border-width: 1px; padding: 10px; max-width: 600px 
+    ;  position:relative;
+        height:300px;
+        width:800px;
+        margin:0 auto;
+        
+        top:100px;
+      
+       
+    
+    }
+    div.centrartitulos{
+    align-content: center;
+    margin-top: 6%;
+    }
+    /* -------------administrador ---------*/
+    div.container-equiporeg {  border-style: none ; border-width: 1px; padding: 10px; max-width: 2000px ; 
+    ;  position:relative;
+        height:700px;
+        width:900px;
+        margin:0 auto;
+        top:140px;
+        left:60px;
+       
+    }
+    div.container-gestion {background:none;  border-style: none ; border-width: 1px; padding: 10px; max-width: 300px 
+    ;  position:relative;
+        height:200px;
+        width:400px;
+        top:250px;
+        left:400px;
+       
+       
+    }
+    
+    div.container-txtgestion {background:none;  border-style: none ; border-width: 1px; padding: 10px; max-width: 300px 
+    ;  position:relative;
+        height:60px;
+        width:400px;
+        top:260px;
+        left:400px;
+       
+       
+    }
+      
+    
+    div.container-txtestatus {background:none;  border-style: none  ; border-width: 1px; padding: 10px; max-width: 300px 
+    ;  position:relative;
+        height:60px;
+        width:400px;
+        left:820px;
+        bottom:1px;
+      
+       
+    }
+    
+    div.container-graficos {background:none;  border-style: none  ; border-width: 1px; padding: 10px; max-width: 300px 
+    ;  position:relative;
+        height:200px;
+        width:400px;
+        left:1250px;
+        bottom:270px;
+       
+      
+       
+    }
+    
+    div.container-txtgraficos {background:none; border-style: none  ; border-width: 1px; padding:10px; max-width: 300px 
+    ;  position:relative;
+        height:60px;
+        width:400px;
+        
+        left:1250px;
+        bottom:258px;
+       
+      
+       
+    }
+    
+    div.container-forminfoequipo {background:white; border-style: none  ; border-width: 1px; padding:10px; max-width: 300px 
+    ;  position:relative;
+        height:60px;
+        width:400px;
+        
+        left:1250px;
+        bottom:398px;
+       
+      
+       
+    }
+    
+    div.container-forminfoequipo1 {background:white; border-style: none  ; border-width: 1px; padding:10px; max-width: 300px 
+    ;  position:relative;
+        height:60px;
+        width:400px;
+        
+        left:1250px;
+        bottom:398px;
+       
+      
+       
+    }
+    .container-graficastatus {background:none; border-style: none  ; border-width: 1px; padding:10px; max-width: 300px 
+    ;  position:relative;
+        height:300px;
+        width:8000px;
+        left: 500px;
+     right:0px;
+     top:200px;
+     bottom: 0px;
+        
+       font-family: fantasy;
+       
+      
+       
+    }
+    
+    .container-graficastatus2 {background:none; border-style: none  ; border-width: 1px; padding:10px; max-width: 300px 
+    ;  position:relative;
+        height:300px;
+        width:8000px;
+        left: 1300px;
+     right:0px;
+     top:100px;
+     bottom: 0px;
+        
+       font-family: fantasy;
+       
+      
+       
+    }
+    div.centrartitulosequiposregistrados{
+       position:relative;
+      right:0px;
+     top:40px;
+     bottom: 0px;
+     left:850px;
+    
+    }
+    div.centrardashboardtecnico{
+       position:relative;
+      right:0px;
+     top:80px;
+     bottom: 0px;
+     left:790px;
+    
+    }
+    div.centrargraficasestado{
+       position:relative;
+      right:0px;
+     top:80px;
+     bottom: 0px;
+     left:100px;
+    
+    }
+    div.centrartxtgraficasmarcas{
+       position:relative;
+      right:0px;
+     top:100px;
+     bottom: 0px;
+     left:100px;
+    
+    }
+    div.centrargraficasmarcas{
+       position:relative;
+      right:0px;
+     top:200px;
+     bottom: 0px;
+     left:100px;
+    
+    }
+    
+    
+    /* -------------tecnico  ---------*/
+    
+    body{
+        background-color:rgb(215, 241, 188 );
+    }
+    
+    .letrastitulos{
+      
+      font-family: fantasy;
+    }
+    
+    .letrasdashboardtecnico{
+     font-family: fantasy;
+    }
+    
+    
+    /* -------------general ---------*/

@@ -1,0 +1,12 @@
+div.container-md { padding: 1%; margin-top: 6%;}
+#grafico { width: 500px; }
+img.icono { width: 100px; height: 100px; margin-left: 1em; margin-right: 1em;}
+body.add { margin: 10% }
+body { margin-left: 10%; margin-right: 10%; background-color:rgb(215,241,188); font-family: fantasy;}
+div.tabla1 { float: right; margin: 4%; margin-right: 8%}
+div.textarea { float: right; margin: 3%; margin-right: 8%; width: 40%}
+div.botones { float: right; margin-right: 8%}
+div.botones1 { margin-top: 0.5em }
+.botonequipo { margin-top: 2% }
+#labels1 { margin-left: 55% }
+.logo { float: right; border: black; border-style: ridge; border-width: 1px;}
