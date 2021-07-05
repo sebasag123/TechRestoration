@@ -10,6 +10,7 @@ $conexion = new mysqli($server,$user,$password,$bd);
 if($conexion->connect_errno){
     die("LA CONEXION HA FALLADO" . $conexion->connect_errno);
 } else { echo "conectado"; }
+echo "probando git";
 ?>
 
 <html>
