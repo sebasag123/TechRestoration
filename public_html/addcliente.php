@@ -13,7 +13,15 @@ if($conexion->connect_errno){
     die("LA CONEXION HA FALLADO" . $conexion->connect_errno);
 }
 session_start();
+if ($_SESSION["username"] ==  "recepcionista" ) {
 
+  } else if ($_SESSION["username"] ==  "admin"){
+    
+  } else {
+  header("Location: index.php");
+  session_destroy();
+  exit();
+  }
 ?>
   <head>
 	  <link rel="shortcut icon" href="favicon.ico" />
