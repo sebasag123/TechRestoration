@@ -14,7 +14,15 @@ if($conexion->connect_errno){
 }
 
 session_start();
+if ($_SESSION["username"] ==  "tecnico" ) {
 
+  } else if ($_SESSION["username"] ==  "admin"){
+    
+  } else {
+  header("Location: index.php");
+  session_destroy();
+  exit();
+  }
 ?>
   <head>
 	  <link rel="shortcut icon" href="favicon.ico" />
