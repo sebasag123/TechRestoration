@@ -13,6 +13,7 @@ if($conexion->connect_errno){
     die("LA CONEXION HA FALLADO" . $conexion->connect_errno);
 }
 session_start();
+
 ?>
   <head>
 	  <link rel="shortcut icon" href="favicon.ico" />
@@ -84,49 +85,85 @@ session_start();
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Gráfica Estados de los Dispositivos</h1>
+        <h1 class="h2">Informacion del Equipo</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
         </div>  
       </div>
 
       <div class="in-flex" id="text1">
-      <canvas id="myChart" width="400" height="400"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0/dist/chart.min.js"></script>
-<script>
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Nuevo Ingreso', 'En Revisión', 'No reparado', 'Reparado', 'Entregado'],
-        datasets: [{
-            label: '# Puntaje',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
+
+      <form class="row g-3 needs-validation" method="POST" action="updateequipotecnico.php">
+      <?php
+      $idficha = $_POST['idficha_tecnica'];
+      $sql = "SELECT * FROM ficha_tecnica WHERE idficha_tecnica = $idficha";
+      $result = mysqli_query($conexion,$sql);
+      while ($mostrar=mysqli_fetch_array($result)){
+
+?>
+  <div class="container-md">
+  <div class="col-md-3" id="labels1">
+    <label for="validationCustom01" class="form-label">Fecha Ingreso</label>
+    <input type="date" readonly="" value="<?php echo $mostrar['fecha_entrada'] ?>" name="fecha_entrada" min="2021-01-01" max="2021-12-31" class="form-control" id="validationCustom03" required >   
+    <input type="hidden" name="idficha_new" value="<?php echo $mostrar['idficha_tecnica'] ?>" class="form-control" id="exampleInputNombre" aria-describedby="nombreHelp" required="">
+  </div>
+  <div class="col-md-4" id="labels1">
+    <label for="validationCustom01" class="form-label">Estatus</label>
+    <input type="text" value="<?php echo $mostrar['estado'] ?>" name="estado" class="form-control" id="validationCustom01"  required>   
+  </div>
+        <br>
+  <div class="col-md-4">
+    <label for="exampleInputEmail1" class="form-label">Tipo Equipo</label>
+    <input type="text" readonly="" value="<?php echo $mostrar['tipo_producto'] ?>" name="tipo_producto" class="form-control" id="exampleInputEmail1" required>
+  </div>
+                <br>
+  <div class="col-md-4">
+    <label for="validationCustom03" class="form-label">Marca</label>
+    <input type="text" readonly="" value="<?php echo $mostrar['marca_producto'] ?>" name="marca_producto" class="form-control" id="validationCustom03"  required>
+    <div class="invalid-feedback">
+      Ingrese un número de marca válido.
+    </div>
+  </div>
+        <br>
+  <div class="col-md-4">
+    <label for="validationCustom03" class="form-label">Modelo</label>
+    <input type="text" readonly="" value="<?php echo $mostrar['modelo_producto'] ?>" name="modelo_producto" class="form-control" id="validationCustom03"  required>
+    <div class="invalid-feedback">
+      Ingrese una dirección válida.
+    </div>
+  </div>
+                <br>
+  <div class="col-md-4">
+    <label for="validationCustom03" class="form-label">N° De Serie</label>
+    <input type="text" readonly="" value="<?php echo $mostrar['cod_serie_producto'] ?>" name="cod_serie_producto" class="form-control" id="validationCustom03" required>
+    <div class="invalid-feedback">
+      Ingrese una dirección válida.
+    </div>
+    
+  </div>
+  <div class="textarea">
+        <div class="form-group">
+    <label for="exampleFormControlTextarea1">Daño Reportado y observaciones</label>
+    <textarea readonly="" class="form-control" name="comentarios" id="exampleFormControlTextarea1" rows="5"><?php echo $mostrar['comentarios'] ?></textarea>
+  </div>    
+    </div>
+    <div class="textarea">
+        <div class="form-group">
+    <label for="exampleFormControlTextarea1">Comentarios y actualizacion del técnico</label>
+    <textarea class="form-control"  name="comentario_tecnico" id="exampleFormControlTextarea1" rows="5"><?php echo $mostrar['comentario_tecnico'] ?></textarea>
+  </div>    
+    </div>
+  <?php
+}
+?>  
+        
+        
+  <div class="botones">
+    <button class="btn btn-dark" name="enviar" id="actequipo" type="submit">Actualizar Equipo</button>
+  </div>
+</div>
+
+</form>
+
       <div class="container-fluid pb-0 mb-0 justify-content-center text-light ">
         <br><br><br><br>
     <footer>

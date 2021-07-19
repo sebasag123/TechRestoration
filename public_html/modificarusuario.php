@@ -13,6 +13,13 @@ if($conexion->connect_errno){
     die("LA CONEXION HA FALLADO" . $conexion->connect_errno);
 }
 session_start();
+if ($_SESSION["username"] == "admin") {
+
+  } else {
+  header("Location: index.php");
+  session_destroy();
+  exit();
+  }
 ?>
   <head>
 	  <link rel="shortcut icon" href="favicon.ico" />
@@ -84,49 +91,82 @@ session_start();
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Gráfica Estados de los Dispositivos</h1>
+        <h1 class="h2">Modificar Usuario</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
         </div>  
       </div>
 
       <div class="in-flex" id="text1">
-      <canvas id="myChart" width="400" height="400"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0/dist/chart.min.js"></script>
-<script>
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Nuevo Ingreso', 'En Revisión', 'No reparado', 'Reparado', 'Entregado'],
-        datasets: [{
-            label: '# Puntaje',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+
+          
+    <form action="updateusuario.php" method="POST">
+    <?php
+        $idusuario = $_POST['idusuario'];
+        $sql = "SELECT * FROM usuario WHERE idusuario = $idusuario";
+        $result = mysqli_query($conexion,$sql);
+        while ($mostrar=mysqli_fetch_array($result)){
+    ?>
+            <div class="container-index">
+            <div class="form-group">
+                    <label for="exampleInputNombre"><b> Nombre</b></label>
+                    <input type="text" name="Nombre" value="<?php echo $mostrar['Nombre'] ?>" class="form-control" id="exampleInputNombre" aria-describedby="nombreHelp" placeholder="Nombre" required="">
+                    <input type="hidden" name="idusuario_new" value="<?php echo $mostrar['idusuario'] ?>" class="form-control" id="exampleInputNombre" aria-describedby="nombreHelp" placeholder="Nombre" required="">
+
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputEmail"><b> Email</b></label>
+                    <input type="text" name="correo_electronico" value="<?php echo $mostrar['correo_electronico'] ?>" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" required="">
+
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputTelefono"><b> Telefono</b></label>
+                    <input type="text" name="telefono" value="<?php echo $mostrar['telefono'] ?>" class="form-control" id="exampleInputTelefono" aria-describedby="telefonoHelp" placeholder="Telefono" required="">
+
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputPermisos"><b> Permisos de:</b></label>
+                    <td>
+
+                     <select value="<?php echo $mostrar['tipo_usuario_idtipo_usuario'] ?>" name="tipo_usuario_idtipo_usuario">
+                         <option value ="1"> Administrador</option>
+                         <option value ="2"> Tecnico</option>
+                         <option value ="3"> Recepcionista</option>
+
+                     </select>
+
+                    </td>
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputUsuario2"><b>Usuario</b></label>
+                    <input type="text" name="username" value="<?php echo $mostrar['username'] ?>" class="form-control" id="exampleInputUsuario2" aria-describedby="usuarioHelp" placeholder="Usuario" required="">
+                </div>
+                <br>
+                <div class="form-group">
+                <label for="exampleInputPermisos"><b>Contraseña nueva:</b></label>
+                <input type="text" name="pass" value="<?php echo $mostrar['pass'] ?>" class="form-control" id="exampleInputUsuario2" aria-describedby="passwordHelp" placeholder="Contraseña nueva" required="">
+                </div>
+                
+                <div class="form-group"> 
+                <center><input name="enviar" type="submit" value="Actualizar Usuario" class="btn btn-dark" id="btnActualizarUsuario"></center>
+                </div>
+                <br>
+                <?php
+            
             }
-        }
-    }
-});
-</script>
+ 
+            ?>  
+            </div>
+            
+        </form>
+
       <div class="container-fluid pb-0 mb-0 justify-content-center text-light ">
         <br><br><br><br>
     <footer>
@@ -176,7 +216,6 @@ var myChart = new Chart(ctx, {
   </div>
 </div>
 
-
       
 <script src="js/jquery-3.5.1.min.js"></script>
       <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>');</script>
@@ -186,4 +225,3 @@ var myChart = new Chart(ctx, {
         <script src="js/dashboard.js"></script>
   </body>
 </html>
-

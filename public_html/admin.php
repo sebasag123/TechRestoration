@@ -1,19 +1,15 @@
 <!doctype html>
-<html>
 <?php
-
-$server="localhost";
-$user="root";
-$password="password";
-$bd ="ejemplo.db";
-
-$conexion = new mysqli($server,$user,$password,$bd);
-
-if($conexion->connect_errno){
-    die("LA CONEXION HA FALLADO" . $conexion->connect_errno);
-}
 session_start();
+if ($_SESSION["username"] == "admin") {
+  
+  } else {
+  header("Location: index.php");
+  session_destroy();
+  exit();
+  }
 ?>
+<html>
   <head>
 	  <link rel="shortcut icon" href="favicon.ico" />
     <meta charset="utf-8">
@@ -36,7 +32,7 @@ session_start();
   
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-    <a class="nav-link" href="logout.php">Cerrar Sesión - <?php echo $_SESSION['username'] ?></a>
+      <a class="nav-link" href="logout.php">Cerrar Sesión - <?php echo $_SESSION['username'] ?></a>
     </li>
   </ul>
 </nav>
@@ -84,49 +80,24 @@ session_start();
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Gráfica Estados de los Dispositivos</h1>
+        <h1 class="h2">Dashboard Administrador</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
         </div>  
       </div>
 
       <div class="in-flex" id="text1">
-      <canvas id="myChart" width="400" height="400"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0/dist/chart.min.js"></script>
-<script>
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Nuevo Ingreso', 'En Revisión', 'No reparado', 'Reparado', 'Entregado'],
-        datasets: [{
-            label: '# Puntaje',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
+
+      <div class="container-md">
+    <center>
+    <a href="RegistrarUsuario.php"><img class="icono" width="13%" src="img/add-user.png"></a>
+    <a href="selectusuario.php"><img class="icono" width="13%" src="img/config-user.png"></a>
+    <hr>
+    <a href="recepcionista.php"><img class="icono" width="13%" src="img/dashRecepcionista.png"></a>
+    <a href="tecnico.php"><img class="icono" width="13%" src="img/dashTecnico.png"></a>
+    
+    </center>
+</div>
+
       <div class="container-fluid pb-0 mb-0 justify-content-center text-light ">
         <br><br><br><br>
     <footer>
@@ -186,4 +157,3 @@ var myChart = new Chart(ctx, {
         <script src="js/dashboard.js"></script>
   </body>
 </html>
-

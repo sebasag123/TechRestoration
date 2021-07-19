@@ -12,7 +12,6 @@ $conexion = new mysqli($server,$user,$password,$bd);
 if($conexion->connect_errno){
     die("LA CONEXION HA FALLADO" . $conexion->connect_errno);
 }
-session_start();
 ?>
   <head>
 	  <link rel="shortcut icon" href="favicon.ico" />
@@ -36,7 +35,7 @@ session_start();
   
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-    <a class="nav-link" href="logout.php">Cerrar Sesión - <?php echo $_SESSION['username'] ?></a>
+      <a class="nav-link" href="#">Inicio</a>
     </li>
   </ul>
 </nav>
@@ -84,49 +83,94 @@ session_start();
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Gráfica Estados de los Dispositivos</h1>
+        <h1 class="h2">Modificar Usuario</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
         </div>  
       </div>
 
       <div class="in-flex" id="text1">
-      <canvas id="myChart" width="400" height="400"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0/dist/chart.min.js"></script>
-<script>
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Nuevo Ingreso', 'En Revisión', 'No reparado', 'Reparado', 'Entregado'],
-        datasets: [{
-            label: '# Puntaje',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
+
+      <form>
+
+            <div class="container-index">
+
+                <h4> Registrar Usuarios</h4>
+                <br>
+
+                <div class="form-group">
+                    <label for="exampleInputNombre"><b> Nombre</b></label>
+                    <input type="text" class="form-control" id="exampleInputNombre" aria-describedby="nombreHelp" placeholder="Nombre" required="">
+
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputEmail"><b> Email</b></label>
+                    <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" required="">
+
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputTelefono"><b> Telefono</b></label>
+                    <input type="text" class="form-control" id="exampleInputTelefono" aria-describedby="telefonoHelp" placeholder="Telefono" required="">
+
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputPermisos"><b> Permisos de:</b></label>
+                    <td>
+
+                     <select name "ingrese estado">
+                         <option value ="1"> Administrador</option>
+                         <option value ="2"> Recepcionista</option>
+                         <option value ="3"> Tecnico</option>
+
+                     </select>
+
+                    </td>
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputUsuario2"><b> Usuario</b></label>
+                    <input type="text" class="form-control" id="exampleInputUsuario2" aria-describedby="usuarioHelp" placeholder="Usuario" required="">
+
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="exampleInputPermisos"><b> Permisos de:</b></label>
+                    <td>
+
+                     <select name "ingrese estado">
+                         <option value ="1"> Activo</option>
+                         <option value ="2"> Inactivo</option>
+                         
+
+                     </select>
+
+                    </td>
+                </div>
+                
+                <div class="form-group">
+                    
+                    <center>  <input type="submit" value="Actualizar Usuario" class="btn btn-success" id="btnActualizarUsuario"></center>
+                    
+                </div>
+                <br>
+                <div class="form-group">
+                    
+                    <a href="RestaurarContrasena.jsp"><center><button type="button" class="btn btn-success">Restaurar Contrasena</button></center></a>
+                    
+                </div>
+            </div>
+            <section class="contenidoDinamico" id="contenidoDinamico">
+
+            </section>
+        </form>
+
       <div class="container-fluid pb-0 mb-0 justify-content-center text-light ">
         <br><br><br><br>
     <footer>
@@ -186,4 +230,24 @@ var myChart = new Chart(ctx, {
         <script src="js/dashboard.js"></script>
   </body>
 </html>
+<?php
 
+if(isset($_POST['enviar'])){
+  $nombre = $_POST["Nombre_cliente"];
+  $rut = $_POST["rut"];
+  $email = $_POST["corre_electronico"];
+  $telefono = $_POST["telefono"];
+  $direccion = $_POST["direccion"];
+  $encargado = $_POST["usuario_idusuario"];
+
+  $insertarDatos = "INSERT INTO cliente VALUES ('','$nombre','$rut', '$telefono', '$email','$encargado', '$direccion') ";
+
+  $ejecutarInsertar = mysqli_query($conexion,$insertarDatos);
+  
+  if(!$ejecutarInsertar){
+    echo"ERROR EN LINEA SQL";
+  }
+
+}
+
+?>

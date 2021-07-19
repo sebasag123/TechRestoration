@@ -33,7 +33,7 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 
-$conexion = mysqli_connect("localhost","root","","ejemplo.db");
+$conexion = mysqli_connect("localhost","root","password","ejemplo.db");
 $consulta = "SELECT * FROM cliente";
 $resultado = mysqli_query($conexion,$consulta);
 
